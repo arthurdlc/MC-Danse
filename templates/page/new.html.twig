@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Page{% endblock %}
+
+{% block body %}
+    <h1>Créer une Nouvelle page</h1>
+
+    {{ include('page/_form.html.twig') }}
+
+    <a href="{{ path('app_page_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
+{% endblock %}

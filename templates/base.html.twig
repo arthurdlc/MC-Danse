@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Welcome!{% endblock %}</title>
+  <link rel="icon" href="/image/logo.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  
+  {% block stylesheets %}{% endblock %}
+  <style>
+  /* Footer */
+  footer {
+    background-color: #262626;
+    color: #fff;
+    padding: 50px 0;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .footerc {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footers {
+    width: 30%;
+    margin-bottom: 20px;
+  }
+
+  .footerh {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .footerl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+  }
+
+  .footerl li {
+    margin-bottom: 10px;
+  }
+
+  .footerl a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .social li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .social li:last-child {
+    margin-right: 0;
+  }
+
+  .fa,
+  .fas {
+    font-size: 20px;
+    margin-right: 0px;
+  }
+    /*///////NavBar///////*/
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Barre de navigation initialement cachée */
+    width: 300px;
+    height: 100vh;
+    background-color: #ff4081; /* Couleur de fond rose */
+    z-index: 9999; /* Barre de navigation au-dessus des autres éléments */
+    transition: left 0.5s ease-in-out; /* Effet de transition lors du déplacement */
+  }
+
+  .navbar.open {
+    left: 0; /* Afficher la barre de navigation lorsqu'elle est ouverte */
+  }
+
+  .navbar .close-icon,
+  .navbar .open-icon {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .navbar .open-icon {
+    margin-left: 10px; /* Espacement du bouton d'ouverture de la navbar */
+  }
+
+  .navbar ul {
+    list-style: none;
+    padding: 0px;
+    margin: 20px;
+  }
+
+  .navbar ul li {
+    margin-bottom: 10px;
+  }
+
+  .navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: background-color 0.5s ease-in-out;
+    font-size: 24px; /* Taille de police plus grande */
+  }
+
+  .navbar ul li a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: left 0.3s ease-in-out;
+  }
+
+  .navbar ul li a:hover::before {
+    left: 0; /* Transition de gauche à droite */
+  }
+
+  /* Bouton d'ouverture de la navbar */
+  .open-icon {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 9999;
+    background: #ff4081;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Responsive styles */
+    .navbar {
+      width: 100%;
+      height: auto;
+      left: 0;
+      bottom: 0;
+      top: auto;
+      max-height: 100vh;
+      padding: 20px;
+    }
+
+    .navbar ul {
+      margin: 0;
+    }
+
+    .navbar ul li {
+      margin-bottom: 20px;
+    }
+
+    .navbar.open {
+      height: 100vh;
+      overflow-y: auto;
+    }
+  }
+
+  </style>         
+</head>
+<body>
+  <img src="/image/nouveaulogo.jpg" style="display: block; margin: 0 auto; width: 55%;">
+
+
+  <div class="navbar" id="navbar">
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/discipline/liste">Disciplines</a></li>
+      <li><a href="/spectacle/aVenir">Spectacle</a></li>
+      <li><a href="/preparation">Préparation <br>aux mariages</a></li>
+      <li><a href="/contact">Contact</a></li>
+      {% if is_granted('ROLE_SUPER_ADMIN') %}
+      <li><a href="/discipline">Liste des disciplines</a></li>
+      <li><a href="/spectacle">Liste des spectacles</a></li>
+      <li><a href="/page">Liste des page</a></li>
+      <li><a href="/logout">Déconnexion</a></li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <!-- Bouton d'ouverture de la navbar -->
+  <span class="open-icon" onclick="toggleNavbar()"><i class="fas fa-bars"></i></span>
+
+  {% block body %}{% endblock %}
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <div class="footerc">
+      <div class="footers">
+        <h3 class="footerh">Contactez-nous !</h3>
+        <ul class="footerl">
+          <li><a href="tel:02.33.67.44.84"><i class="fas fa-phone"></i> +33 (0)2 33 67 44 84</a></li>
+          <li><a href="mailto:elodiecano@hotmail.fr"><i class="far fa-envelope"></i> elodiecano@hotmail.fr</a></li>
+          <li><a href="https://www.google.com/maps/place/MC+DANSE/@48.747604,-0.5754505,17z/data=!3m1!4b1!4m6!3m5!1s0x480a29bb2e06dc39:0x7464cf0996b3c12b!8m2!3d48.7476041!4d-0.5705796!16s%2Fg%2F1tgp9nrh?entry=ttu" target="_blank"><i class="fas fa-map-marker-alt"></i> 2 rue Richard Lenoir - 61100 Flers</a></li>
+        </ul>
+      </div>
+      <div class="footers">
+        <h3 class="footerh">Horraire d'ouverture</h3>
+          <ul class="footerl">
+            <li>Lundi-Vendredi : 17:00 - 21:00</li>
+            <li>Samedi : 10:00 - 13:30</li>
+            <li>Dimanche : fermé</li>
+          </ul>
+      </div>
+      <div class="footers">
+        <h3 class="footerh">Suivez-nous</h3>
+        <ul class="footerl social">
+          <li><a href="https://www.facebook.com/mc.danse.fr" target="_blank"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/mcdanse" c><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.instagram.com/mcdanse/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://www.youtube.com/channel/UC4ZurGAiPzYaTnLZdN65S4g" target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+        <br height="20px">
+        <h3 class="footerh">Liens utiles</h3>
+        <ul class="footerl">
+          <li><a href="politique.pdf" target="_blank"><i class="fas fa-lock"></i> Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- ======= ////// ======= -->
+
+  {% block javascripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+  <script>
+    function toggleNavbar() {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('open');
+    }
+  </script>
+  {% endblock %}
+</body>
+</html>

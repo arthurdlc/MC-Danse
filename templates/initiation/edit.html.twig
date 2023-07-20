@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Initiation{% endblock %}
+
+{% block body %}
+    <h1>Edit Initiation</h1>
+
+    {{ include('initiation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_initiation_index') }}">back to list</a>
+
+    {{ include('initiation/_delete_form.html.twig') }}
+{% endblock %}

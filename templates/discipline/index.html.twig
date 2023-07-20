@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discipline index{% endblock %}
+
+{% block body %}
+    <h1>Discipline index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Tarif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discipline in disciplines %}
+            <tr >
+                <td><img src="/upload/images/{{ discipline.image }}" height="15%"></td>
+                <td>{{ discipline.nom }}</td>
+                <td>{{ discipline.tarif }}</td>
+                <td>{{ discipline.contenue|raw }}</td> {# le "raw" sert a faire en sorte que l'affichage se fait sans balie HTML #}
+                <td>
+                    <a href="{{ path('app_discipline_show', {'id': discipline.id}) }}">show</a>
+                    <a href="{{ path('app_discipline_edit', {'id': discipline.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+
+    <a href="{{ path('app_discipline_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,7 @@
+# config/packages/assets.yaml
+
+framework:
+    assets:
+        packages:
+            canva_fonts:
+                base_path: '%kernel.project_dir%/public/fonts'

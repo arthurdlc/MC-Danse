@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discipline{% endblock %}
+
+{% block body %}
+
+    <center><h1>{{ discipline.nom }}</h1></center>
+    <div class="row" height="30%">
+        <img src="/upload/images/{{ discipline.image }}" >
+    </div>
+    <div class="row">
+        {{ discipline.contenue|raw }}
+        </div>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a href="{{ path('app_discipline_index') }}">back to list</a>
+
+    <a href="{{ path('app_discipline_edit', {'id': discipline.id}) }}">edit</a>
+
+    {{ include('discipline/_delete_form.html.twig') }}
+    {% endif %}
+
+{% endblock %}

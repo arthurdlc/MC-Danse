@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spectacle index{% endblock %}
+
+{% block body %}
+    <h1>Spectacle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom : </th>
+                <th>Lieu : </th>
+                <th>Action :</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for spectacle in spectacles %}
+            <tr>
+                <td>{{ spectacle.nom }}</td>
+                <td>{{ spectacle.lieu }}</td>
+                <td>
+                    <a href="{{ path('app_spectacle_show', {'id': spectacle.id}) }}"><button class="btn btn-danger">Voir</button></a>
+                    <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-danger">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_spectacle_new') }}"><button class="btn btn-danger">Créer un spectacle</button></a>
+{% endblock %}

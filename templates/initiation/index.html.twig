@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Initiation index{% endblock %}
+
+{% block body %}
+    <h1>Initiation index</h1>
+    <center>
+    <table class="table" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Tarif</th>
+                <th>Date</th>
+                <th>Contenu</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for initiation in initiations %}
+            <tr>
+                <td>{{ initiation.id }}</td>
+                <td>{{ initiation.nom }}</td>
+                <td>{{ initiation.tarif }}</td>
+                <td>{{ initiation.contenue }}</td>
+                <td>{{ initiation.date ? initiation.date|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_initiation_show', {'id': initiation.id}) }}">show</a>
+                    <a href="{{ path('app_initiation_edit', {'id': initiation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </center>
+
+    <a href="{{ path('app_initiation_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | {{ spectacle.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Spectacle</h1>
+
+            <div class="row" >
+                <img src="/upload/images/{{ spectacle.image }}" height="30%" >
+            </div><br>
+            <div class="row">   
+                <div class="col"><h1 align="center">{{ spectacle.nom }}</h1></div>
+            </div><br>
+            <div class="row">
+                <h3>Ce spectacle aura lieu a : {{ spectacle.lieu }}, le : {{ spectacle.date ? spectacle.date|date('Y-m-d H:i  ') }}</h3>
+            </div><br>
+            <div class="row">
+                <h3>Tarif d'entré : {{ spectacle.tarif }} €</h3>
+            </div><br>
+            <div class="row">
+                <h4>{{ spectacle.contenue|raw }}</h4>
+            </div>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a href="{{ path('app_spectacle_index') }}">back to list</a>
+
+    <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}">edit</a>
+    
+    {{ include('spectacle/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

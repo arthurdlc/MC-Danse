@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | Contact{% endblock %}
+
+{% block stylesheets %}
+<style>
+body{
+	font-size: 18px;
+}
+.boutton_envoie {
+  font-size: 40px;
+  font-weight: 700;
+  color: #ff36a9;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.boutton_envoie:focus {
+  outline: none;
+}
+
+.boutton_envoie i {
+  font-size: 32px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+/* Animation de l'envol de l'avion */
+@keyframes planeFly {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.message-sent .boutton_envoie {
+  animation: planeFly 1s forwards;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <form class="pt-5" method="POST" action="{{ path('send_email') }}" style="margin: 60px;">
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label class="form-label" for="last_name">Nom</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" required>
+      </div>
+      <div class="col-sm-6">
+        <label class="form-label" for="first_name">Prénom</label>
+        <input type="text" class="form-control" id="first_name" name="first_name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label class="form-label" for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="col-sm-6">
+        <label class="form-label" for="phone_number">Téléphone</label>
+        <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="subject">Sujet</label>
+      <input type="text" class="form-control" id="subject" name="subject" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+    </div>
+    <div class="form-group text-center">
+      <button class="boutton_envoie" id="submitButton" type="submit"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </form>
+</div>
+
+{% if app.request.hasPreviousSession() %}
+  {% for flashMessage in app.session.flashbag.get('success') %}
+    <!-- Button trigger modal (hidden) -->
+    <button type="button" id="modalTriggerButton" data-bs-toggle="modal" data-bs-target="#successModal" style="display: none;"></button>
+    <!-- Modal -->
+    <div class="modal fade modal-dialog-centered" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Message envoyé</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ flashMessage }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-sm" style="font-family: Amatic SC; font-size: 26px; font-weight: 700;" data-bs-dismiss="modal">Parfait !</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Script to trigger the modal on page load -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var modalTriggerButton = document.getElementById('modalTriggerButton');
+        modalTriggerButton.click();
+        
+        // Ajouter la classe "message-sent" au bouton pour déclencher l'animation
+        var submitButton = document.getElementById('submitButton');
+        submitButton.classList.add('message-sent');
+      });
+    </script>
+  {% endfor %}
+{% endif %}
+{% endblock %}

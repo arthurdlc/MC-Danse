@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page.nom }}{% endblock %}
+
+{% block body %}
+
+    {{ page.corp|raw }}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <a href="{{ path('app_page_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
+
+    <a href="{{ path('app_page_edit', {'id': page.id}) }}"><button class="btn btn-success">Modifier</button></a>
+
+    {{ include('page/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

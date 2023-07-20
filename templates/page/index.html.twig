@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page index{% endblock %}
+
+{% block body %}
+<br><br><br><br>
+    <h2 align="center">Liste des Pages</h2>
+<br><br>
+    <table class="table" width="100%">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.nom }}</td>
+                <td>
+                    <a href="{{ path('app_page_show', {'id': page.id}) }}"><button class="btn btn-primary">Afficher</button></a>
+                    <a href="{{ path('app_page_edit', {'id': page.id}) }}"><button class="btn btn-warning">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de page a l'heure actuelle</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    <center><a href="{{ path('app_page_new') }}" ><button class="btn btn-success">Créer une nouvelle <br>page</button></a></center>
+     <br><br><br>
+{% endblock %}

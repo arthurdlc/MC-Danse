@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Spectacle{% endblock %}
+
+{% block body %}
+    <h1>Create new Spectacle</h1>
+
+    {{ include('spectacle/_form.html.twig') }}
+
+    <a href="{{ path('app_spectacle_index') }}">back to list</a>
+{% endblock %}
