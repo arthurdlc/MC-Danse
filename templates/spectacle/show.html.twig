@@ -1,30 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}MC-Danse | {{ spectacle.nom }}{% endblock %}
+{% block stylesheet %}
 
+{% endblock %}
 {% block body %}
-    <h1>Spectacle</h1>
-
-            <div class="row" >
-                <img src="/upload/images/{{ spectacle.image }}" height="30%" >
-            </div><br>
-            <div class="row">   
-                <div class="col"><h1 align="center">{{ spectacle.nom }}</h1></div>
-            </div><br>
-            <div class="row">
-                <h3>Ce spectacle aura lieu a : {{ spectacle.lieu }}, le : {{ spectacle.date ? spectacle.date|date('Y-m-d H:i  ') }}</h3>
-            </div><br>
-            <div class="row">
-                <h3>Tarif d'entré : {{ spectacle.tarif }} €</h3>
-            </div><br>
-            <div class="row">
-                <h4>{{ spectacle.contenue|raw }}</h4>
-            </div>
+<style>
+.nom_spectacle{
+    font-family: 'Amsterdam';
+    font-size: 50px;
+}
+</style>
+    <div class="row">
+        <div class="col-4 mx-auto"> <!-- Utilisez col-4 pour une largeur de 30% -->
+            <img src="/upload/images/{{ spectacle.image }}" class="img-fluid"> <!-- Utilisez img-fluid pour que l'image soit réactive -->
+        </div>
+    </div>
+    <br>
+    <div class="row">   
+        <div class="col"><h1 align="center" class="nom_spectacle"><i>{{ spectacle.nom }}</i></h1></div>
+    </div><br>
+    <div class="row">
+        <h3>Ce spectacle aura lieu a : {{ spectacle.lieu }}, le : {{ spectacle.date ? spectacle.date|date('Y-m-d H:i  ') }}</h3>
+    </div><br>
+    <div class="row">
+        <h3>Tarif d'entré : {{ spectacle.tarif }} €</h3>
+    </div><br>
+    <div class="row">
+        <h4>{{ spectacle.contenue|raw }}</h4>
+    </div>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <a href="{{ path('app_spectacle_index') }}">back to list</a>
-
-    <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}">edit</a>
-    
-    {{ include('spectacle/_delete_form.html.twig') }}
+        <a href="{{ path('app_spectacle_index') }}"><button class="btn btn-danger">voir la liste</button></a>
+        <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-warning">Modifier</button></a>
+        {{ include('spectacle/_delete_form.html.twig') }}
     {% endif %}
 {% endblock %}

@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Spectacle index{% endblock %}
+{% block title %}MC-Danse | Liste ddes Spectacles {% endblock %}
 
 {% block body %}
-    <h1>Spectacle index</h1>
-
+<center>
     <table class="table">
         <thead>
             <tr>
@@ -19,8 +18,8 @@
                 <td>{{ spectacle.nom }}</td>
                 <td>{{ spectacle.lieu }}</td>
                 <td>
-                    <a href="{{ path('app_spectacle_show', {'id': spectacle.id}) }}"><button class="btn btn-danger">Voir</button></a>
-                    <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-danger">Modifier</a>
+                    <a href="{{ path('app_spectacle_show', {'id': spectacle.id}) }}"><button class="btn btn-primary">Voir</button></a>
+                    <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-warning">Modifier</button></a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +30,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_spectacle_new') }}"><button class="btn btn-danger">Créer un spectacle</button></a>
+    <a href="{{ path('app_spectacle_new') }}"><button class="btn btn-success">Créer un spectacle</button></a></center>
 {% endblock %}

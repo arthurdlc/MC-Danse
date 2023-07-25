@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Spectacle{% endblock %}
+{% block title %}MC-Danse | Modifier un Spectacle{% endblock %}
 
 {% block body %}
-    <h1>Edit Spectacle</h1>
+    <h1>Modifier un Spectacle</h1>
 
-    {{ include('spectacle/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('spectacle/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
     <a href="{{ path('app_spectacle_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
 

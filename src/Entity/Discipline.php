@@ -20,9 +20,6 @@ class Discipline
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?int $tarif = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenue = null;
 
@@ -51,18 +48,6 @@ class Discipline
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getTarif(): ?int
-    {
-        return $this->tarif;
-    }
-
-    public function setTarif(int $tarif): self
-    {
-        $this->tarif = $tarif;
 
         return $this;
     }

@@ -202,7 +202,7 @@ html, body {
     <div class="slider__item">
       <img class="slider__image" src="/upload/images/{{ discipline.image }}" alt="{{ discipline.nom }}">
       <div class="slider__overlay">
-        <button class="slider__button">En savoir plus</button>
+        <a href="{{ path('app_discipline_show', {'id': discipline.id}) }}"><button class="slider__button">En savoir plus</button></a>
       </div>
       <div class="slider__info">
         <h2><b>{{ discipline.nom }}</b></h2>
@@ -211,9 +211,9 @@ html, body {
     {% endfor %}
   </div>
   <div class="slider__nav" style="display: flex;justify-content: center;">
-    <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
-    <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
-  </div>
+    <button class="slider__nav__button slider__nav__button--prev" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
+    <button class="slider__nav__button slider__nav__button--next" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.js"></script>
 {% endblock %}

@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/spectacle')]
 class SpectacleController extends AbstractController
 {
-    #[Route('/aVenir', name:'app_discipline_aVenir', methods:['GET'])]
+    #[Route('/aVenir', name:'app_pectacle_aVenir', methods:['GET'])]
     function aVenir(SpectacleRepository $spectacleRepository, DisciplineRepository $disciplineRepository): Response
     {
         return $this->render('spectacle/aVenir.html.twig', [
@@ -53,7 +53,6 @@ class SpectacleController extends AbstractController
             }
 
             $spectacleRepository->save($spectacle, true);
-
 
             return $this->redirectToRoute('app_spectacle_index', [], Response::HTTP_SEE_OTHER);
         }

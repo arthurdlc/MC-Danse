@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | Modifier un envenement{% endblock %}
+
+{% block body %}
+    <center><h1>Modifier un Evenement</h1></center>
+
+    {{ include('stage_evenement/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a href="{{ path('app_stage_evenement_index') }}"><button class="btn btn-danger" >Voir la liste</a>
+
+    {{ include('stage_evenement/_delete_form.html.twig') }}
+{% endblock %}

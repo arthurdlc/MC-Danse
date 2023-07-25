@@ -11,6 +11,11 @@
   
   {% block stylesheets %}{% endblock %}
   <style>
+
+  @font-face {
+  font-family: 'Amsterdam';
+  src: url('/fonts/amsterdam_4/Amsterdam.ttf') format('truetype');
+  }
   /* Footer */
   footer {
     background-color: #262626;
@@ -184,12 +189,14 @@
     <ul>
       <li><a href="/">Accueil</a></li>
       <li><a href="/discipline/liste">Disciplines</a></li>
-      <li><a href="/spectacle/aVenir">Spectacle</a></li>
+      <li><a href="/spectacle/aVenir">Spectacles</a></li>
+      <li><a href="/stageevenement/evenement">Stages/Evenements</a></li>
       <li><a href="/preparation">Préparation <br>aux mariages</a></li>
       <li><a href="/contact">Contact</a></li>
       {% if is_granted('ROLE_SUPER_ADMIN') %}
       <li><a href="/discipline">Liste des disciplines</a></li>
       <li><a href="/spectacle">Liste des spectacles</a></li>
+      <li><a href="/stageevenement">Liste des Stages/Evenements</a></li>
       <li><a href="/page">Liste des page</a></li>
       <li><a href="/logout">Déconnexion</a></li>
       {% endif %}
@@ -207,7 +214,7 @@
       <div class="footers">
         <h3 class="footerh">Contactez-nous !</h3>
         <ul class="footerl">
-          <li><a href="tel:02.33.67.44.84"><i class="fas fa-phone"></i> +33 (0)2 33 67 44 84</a></li>
+          <li><a href="tel:06.70.19.20.49"><i class="fas fa-phone"></i> +33 (0)6 70 19 20 49</a></li>
           <li><a href="mailto:elodiecano@hotmail.fr"><i class="far fa-envelope"></i> elodiecano@hotmail.fr</a></li>
           <li><a href="https://www.google.com/maps/place/MC+DANSE/@48.747604,-0.5754505,17z/data=!3m1!4b1!4m6!3m5!1s0x480a29bb2e06dc39:0x7464cf0996b3c12b!8m2!3d48.7476041!4d-0.5705796!16s%2Fg%2F1tgp9nrh?entry=ttu" target="_blank"><i class="fas fa-map-marker-alt"></i> 2 rue Richard Lenoir - 61100 Flers</a></li>
         </ul>
@@ -215,7 +222,7 @@
       <div class="footers">
         <h3 class="footerh">Horraire d'ouverture</h3>
           <ul class="footerl">
-            <li>Lundi-Vendredi : 17:00 - 21:00</li>
+            <li>Mercredi-Vendredi : 16:00 - 22:00</li>
             <li>Samedi : 10:00 - 13:30</li>
             <li>Dimanche : fermé</li>
           </ul>

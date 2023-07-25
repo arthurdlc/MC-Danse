@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | Liste des Evenements {% endblock %}
+
+{% block body %}
+<center>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Tarif</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stage_evenement in stage_evenements %}
+            <tr>
+                <td>{{ stage_evenement.nom }}</td>
+                <td>{{ stage_evenement.date ? stage_evenement.date|date('d-m-Y' ) : '' }}</td>
+                <td>{{ stage_evenement.tarif }}</td>
+                <td>
+                    <a href="{{ path('app_stage_evenement_show', {'id': stage_evenement.id}) }}"><button class"btn btn-primary">Voir</button></a>
+                    <a href="{{ path('app_stage_evenement_edit', {'id': stage_evenement.id}) }}"><button class"btn btn-warning">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_stage_evenement_new') }}"><button class="btn btn-success">Créer un evenement</button></a>
+    </center>
+{% endblock %}

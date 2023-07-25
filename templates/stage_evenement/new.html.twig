@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | Céer un Evenements{% endblock %}
+
+{% block body %}
+    <center><h1>Créer un nouvel Enenement ou Stage</h1></center>
+
+    {{ include('stage_evenement/_form.html.twig') }}
+
+    <a href="{{ path('app_stage_evenement_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
+{% endblock %}

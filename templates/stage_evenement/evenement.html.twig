@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | Evenement à venir{% endblock %}
+
+{% block stylesheets %}
+  <style>
+    .aVenir {
+      margin-top: 20px; /* Ajuster la marge supérieure selon vos besoins */
+      width: 33%;
+      margin: 0 auto; /* Ajout de la propriété pour centrer les cartes */
+    }
+
+    .card {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .card-img-top {
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-title {
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #ff4081;
+      border-color: #ff4081;
+    }
+
+    .btn-primary:hover {
+      background-color: #ff4081;
+      border-color: #ff4081;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="aVenir">
+    <center>
+      {% for stageevenement in stage_evenements %}
+        <div class="card">
+          <img src="/upload/images/{{ stageevenement.image }}" class="card-img-top" alt="{{ stageevenement.nom }}">
+          <div class="card-body">
+            <h4 class="card-title">{{ stageevenement.nom }}</h4>
+            <h5 class="card-title">À {{ stageevenement.lieu }}, </h5>
+            <h5 class="card-title">Le {{ stageevenement.date ? stageevenement.date|date('d/m/Y') : '' }}, tarif : {{ stageevenement.tarif }}€</h5>
+            <p class="card-text"></p>   
+            <a href="{{ path('app_stage_evenement_show', {'id': stageevenement.id}) }}" class="btn btn-primary">Plus d'Infos</a>
+          </div>
+        </div>
+      {% else %}
+        <p>{{ 'Pas de Stage ou d\evenement prévu pour l\'instant' | trans }}</p>
+      {% endfor %}
+    </center>
+  </div>
+{% endblock %}

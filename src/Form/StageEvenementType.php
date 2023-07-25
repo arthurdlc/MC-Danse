@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Discipline;
+use App\Entity\StageEvenement;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,13 +10,17 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class DisciplineType extends AbstractType
+class StageEvenementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom')
+            ->add('date', DateTimeType::class, [
+                'date_label' => 'Starts On',
+            ])
             ->add('image', FileType::class, [
                 'label' => 'Illustration',
     
@@ -42,14 +46,17 @@ class DisciplineType extends AbstractType
                     ])
                 ],
             ])
-            ->add('contenue',CKEditorType::class)
+            ->add('description',CKEditorType::class)
+            ->add('tarif', MoneyType::class, [
+                'divisor' => 1,
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Discipline::class,
+            'data_class' => StageEvenement::class,
         ]);
     }
 }

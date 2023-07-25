@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MC-Danse | {{ stage_evenement.nom }}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ stage_evenement.nom }}</th>
+            </tr>
+            <tr>
+                <th>Date : {{ stage_evenement.date ? stage_evenement.date|date('d-m-Y') : '' }}</th>
+            </tr>
+            <tr>
+                <td>{{ stage_evenement.image }}</td>
+            </tr>
+            <tr>
+                <td>{{ stage_evenement.description }}</td>
+            </tr>
+            <tr>
+                <th>Tarif : {{ stage_evenement.tarif }} €</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stage_evenement_index') }}">back to list</a>
+
+    <a href="{{ path('app_stage_evenement_edit', {'id': stage_evenement.id}) }}">edit</a>
+
+    {{ include('stage_evenement/_delete_form.html.twig') }}
+{% endblock %}
