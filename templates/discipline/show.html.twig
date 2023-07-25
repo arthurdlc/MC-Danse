@@ -47,10 +47,10 @@
     <br><br><br><br>
     <div class="discipline-container">
         <div class="row mb-4">
-            <div class="col-md-6 text-left">
+            <div class="col-md-7 text-left">
                 <img src="/upload/images/{{ discipline.image }}" class="img-fluid discipline-image">
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-5 text-right">
                 <br><br><br><br><br><br>
                 <h1 class="nom"><i>{{ discipline.nom }}</i></h1>
             </div>
@@ -65,8 +65,8 @@
         {% if is_granted('ROLE_SUPER_ADMIN') %}
         <div class="row mt-4">
             <div class="col-md-12 text-center">
-                <a href="{{ path('app_discipline_index') }}" class="btn btn-secondary">Back to List</a>
-                <a href="{{ path('app_discipline_edit', {'id': discipline.id}) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ path('app_discipline_index') }}" class="btn btn-warning">Voir la liste</a>
+                <a href="{{ path('app_discipline_edit', {'id': discipline.id}) }}" class="btn btn-success">Modifier</a>
                 {{ include('discipline/_delete_form.html.twig') }}
             </div>
         </div>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planning{% endblock %}
+
+{% block body %}
+<br/><br/>
+    <h1 align="center" style="font-family: 'Amsterdam', sans-sherif;"><i>Planing</i></h1>
+    <br/>
+    <img src="/upload/images/{{ planning.Image }}"  width="75%">
+    <br/>
+    <a href="{{ path('app_planning_index') }}"><button class="btn btn-warning">Voir la liste</button></a>
+    
+    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}"><button class="btn btn-success">Modifier</button></a>
+
+    {{ include('planning/_delete_form.html.twig') }}
+{% endblock %}  

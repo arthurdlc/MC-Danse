@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planning index{% endblock %}
+
+{% block body %}
+    <h1>Planning index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planning in plannings %}
+            <tr>
+                <td><img src="/upload/images/{{ planning.Image }}" * height="15%"></td>
+                <td>
+                    <a href="{{ path('app_planning_show', {'id': planning.id}) }}"><button class="btn btn-primary">Voir</button></a>
+                    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}"><button class="btn btn-warning">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planning_new') }}"><button class="btn btn-success">Créer un autre planning</button></a>
+{% endblock %}
