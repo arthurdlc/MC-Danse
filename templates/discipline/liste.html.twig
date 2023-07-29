@@ -196,7 +196,9 @@ html, body {
 {% endblock %}
 
 {% block body %}
-<div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
+<br/><br/>
+<h2 align="center" style="font-family: 'Amsterdam', sans-sherif; "><i>Nos Disciplines :</i></h2>
+<div class="slider" x-data="{start: true, end: false}" style="padding-top: 100px;">
   <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
     {% for discipline in disciplines %}
     <div class="slider__item">

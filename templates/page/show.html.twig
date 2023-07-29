@@ -5,7 +5,15 @@
 {% block body %}
 
     {{ page.corp|raw }}
-
+    {% if page.id == 4 %}
+        <!-- Afficher la vidéo ici -->
+        <center>
+        <video controls width="640" height="360">
+            <source src="{{ asset('video/mon_fichier_video.mp4') }}" type="video/mp4">
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+        </video>
+        </center>
+    {% endif %}
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <a href="{{ path('app_page_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
 
