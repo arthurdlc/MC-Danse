@@ -13,13 +13,11 @@ class PageFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $accueil = new Page();
-        $accueil->setId(3);
-        $accueil->setNom("");
+        $accueil->setNom("Accueil");
         $manager->persist($accueil);
 
         $preparation = new Page();
-        $preparation->setId(4);
-        $preparation->setNom("");
+        $preparation->setNom("Preparation au Marriages");
         $manager->persist($preparation);
 
         $manager->flush();

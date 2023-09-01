@@ -16,8 +16,8 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $superAdmin = new User();
-        $superAdmin->setEmail('superadmin@domaine.tld');
-        $plaintextPassword="superadmin";
+        $superAdmin->setEmail('elowillorphe@test.fr');
+        $plaintextPassword="198220102019";
         $hashedPassword = $this->passwordHasher->hashPassword($superAdmin, $plaintextPassword);
         $superAdmin->setPassword($hashedPassword);
         $superAdmin->setRoles(["ROLE_SUPER_ADMIN"]);
