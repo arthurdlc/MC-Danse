@@ -26,6 +26,9 @@ class Page
     #[ORM\Column(length: 255)]
     private ?string $NumPage = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $videoPath = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Page
     public function setNumPage(int $NumPage): self
     {
         $this->NumPage = $NumPage;
+
+        return $this;
+    }
+
+    public function getVideoPath(): ?string
+    {
+        return $this->videoPath;
+    }
+
+    public function setVideoPath(?string $videoPath): self
+    {
+        $this->videoPath = $videoPath;
 
         return $this;
     }

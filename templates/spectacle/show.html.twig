@@ -1,34 +1,96 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}MC-Danse | {{ spectacle.nom }}{% endblock %}
-{% block stylesheet %}
-
-{% endblock %}
-{% block body %}
+{% block stylesheets %}
 <style>
-.nom_spectacle{
-    font-family: 'Amsterdam';
-    font-size: 50px;
-}
+    .event-container {
+        max-width: 1200px; /* Largeur maximale souhaitée */
+        margin: 20px 5%; /* Augmenter la marge sur les côtés pour centrer le contenu */
+        padding: 20px;
+        background-color: #ff4081;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-image {
+        width: 100%;
+        max-height: 400px; /* Réglez la hauteur maximale souhaitée pour l'image */
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .event-header {
+        font-size: 40px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        margin-top: 10px;
+        font-family: 'Amsterdam',sans-sherif;
+    }
+
+    .event-name {
+        font-family: 'Amsterdam', sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center; /* Centrer le nom */
+        margin-top: 10px;
+    }
+
+    .event-price {
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+        text-align: center; /* Centrer le tarif */
+        margin-top: 5px;
+    }
+
+    .event-description {
+        font-size: 18px;
+        color: #fff;
+    }
+
+    .back-to-list {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .edit-button,
+    .delete-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #f8f8f8;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .edit-button:hover,
+    .delete-button:hover {
+        background-color: #eaeaea;
+    }
 </style>
-    <div class="row">
-        <div class="col-4 mx-auto"> <!-- Utilisez col-4 pour une largeur de 30% -->
-            <img src="/upload/images/{{ spectacle.image }}" class="img-fluid"> <!-- Utilisez img-fluid pour que l'image soit réactive -->
+{% endblock %}
+
+{% block body %}
+    <div class="event-container">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <img src="/upload/images/{{ spectacle.image }}" class="event-image" alt="{{ spectacle.nom }}">
+            </div>
+            <div class="col-md-6">
+            <br/><br/><br/><br/><br/>
+                <h1 class="event-header">{{ spectacle.nom }}</h1>
+                <br>
+                <div class="event-price">Tarif : {{ spectacle.tarif }} €</div>
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="row">   
-        <div class="col"><h1 align="center" class="nom_spectacle"><i>{{ spectacle.nom }}</i></h1></div>
-    </div><br>
-    <div class="row">
-        <h3>Ce spectacle aura lieu a : {{ spectacle.lieu }}, le : {{ spectacle.date ? spectacle.date|date('Y-m-d H:i  ') }}</h3>
-    </div><br>
-    <div class="row">
-        <h3>Tarif d'entré : {{ spectacle.tarif }} €</h3>
-    </div><br>
-    <div class="row">
-        <h4>{{ spectacle.contenue|raw }}</h4>
-    </div>
+</div>
     {% if is_granted('ROLE_SUPER_ADMIN') %}
         <a href="{{ path('app_spectacle_index') }}"><button class="btn btn-danger">voir la liste</button></a>
         <a href="{{ path('app_spectacle_edit', {'id': spectacle.id}) }}"><button class="btn btn-warning">Modifier</button></a>

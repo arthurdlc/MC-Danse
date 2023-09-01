@@ -36,7 +36,7 @@ class StageEvenementController extends AbstractController
     }
 
     #[Route('/new', name: 'app_stage_evenement_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, StageEvenementRepository $stageEvenementRepository, ImageUploaderHelper $imageUploaderHelper, DisciplineRepository $disciplineRepository): Response
+    public function new(Request $request, StageEvenementRepository $stageEvenementRepository, VideoUploaderHelper $videoUploaderHelper, DisciplineRepository $disciplineRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 

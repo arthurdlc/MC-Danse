@@ -6,6 +6,9 @@
 parameters:
     images_directory: '%kernel.project_dir%/public/upload/images/'
     images_directory_name: '%kernel.project_dir%/public/upload/img_spectacle/'
+    parameters:
+    video: '%kernel.project_dir%/public/upload/video/'
+
 
 services:
     # default configuration for services in *this* file
@@ -27,3 +30,8 @@ services:
     App\Services\ImageUploaderHelper:
         arguments:
             $imageDirectory: '%kernel.project_dir%/public/upload/images/'
+
+    App\Controller\PreparationController:
+        public: true
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
