@@ -14,10 +14,14 @@ class PageFixtures extends Fixture
     {
         $accueil = new Page();
         $accueil->setNom("Accueil");
+        $accueil->setNumPage(1);
+        $accueil->setCorp("");
         $manager->persist($accueil);
 
         $preparation = new Page();
         $preparation->setNom("Preparation au Marriages");
+        $preparation->setNumPage(2);
+        $preparation->setCorp("");
         $manager->persist($preparation);
 
         $manager->flush();
