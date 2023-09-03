@@ -21,7 +21,7 @@ class PreparationController extends AbstractController
     public function index(): Response
     {
         $pageRepository = $this->entityManager->getRepository(Page::class);
-        $page = $pageRepository->find(6);
+        $page = $pageRepository->find(2);
 
         if ($page) {
             return $this->render('page/show.html.twig', [
