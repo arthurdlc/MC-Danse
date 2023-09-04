@@ -28,8 +28,8 @@ class ContactController extends AbstractController
         $message = $request->request->get('message');
 
         $email = (new Email())
-            ->from('delacour.a1109@ik.me')
-            ->to('delacour.a1109@ik.me')
+            ->from('elodiecano@mc-danse.fr')
+            ->to('elodiecano@mc-danse.fr')
             ->subject($subject)
             ->text("Ce mail provient du formulaire de contact du site Internet 'MC-Danse.fr'\n\nLes informations fournies peuvent être erronées ou ne pas correspondres aux coordonnées réelles de la personne ayant envoyé ce message, l'auteur de ce message peut donc se faire passer pour quelqu'un d'autre !\n\n\nNom : $last_name\n\nPrénom : $first_name\n\nEmail : $email\n\nTéléphone : $phone_number\n\nSujet : $subject\n\n\n\n$message");
 
