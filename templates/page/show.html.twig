@@ -6,9 +6,6 @@
 <div style="margin-left: 3%;">
     {{ page.corp|raw }}
 </div>
-{% if page.id == 3 %}
-    <img src="/public/image/Accueil.jpg">
-{% endif %}
 {% if page.id == 4 %}
     {% if page.videoPath is defined %}
         <!-- Afficher la vidéo ici -->
@@ -20,6 +17,11 @@
         </center>
     {% endif %}
 {% endif %}
+<center>
+{% if page.image is defined %}
+    <img src="/upload/images/{{ page.image }}"  width="75%"> <br/>
+{% endif %}
+</center>
 {% if is_granted('ROLE_SUPER_ADMIN') %}
     <a href="{{ path('app_page_index') }}"><button class="btn btn-danger">Voir la liste</button></a>
 

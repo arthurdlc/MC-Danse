@@ -29,6 +29,12 @@ class Page
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $videoPath = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgMid = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +96,30 @@ class Page
     public function setVideoPath(?string $videoPath): self
     {
         $this->videoPath = $videoPath;
+
+        return $this;
+    }
+
+    public function getImgMid(): ?string
+    {
+        return $this->imgMid;
+    }
+
+    public function setImgMid(?string $imgMid): self
+    {
+        $this->imgMid = $imgMid;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
