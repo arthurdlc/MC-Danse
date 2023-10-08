@@ -19,7 +19,7 @@
 {% endif %}
 <center>
 {% if page.image is defined %}
-    <img src="/upload/images/{{ page.image }}"  width="75%"> <br/>
+    <img src="/upload/images/{{ page.image }}"  width="%"> <br/>
 {% endif %}
 </center>
 {% if is_granted('ROLE_SUPER_ADMIN') %}
